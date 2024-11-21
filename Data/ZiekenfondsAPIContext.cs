@@ -1,11 +1,11 @@
 ﻿using Api.Ziekenfonds.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
-
-namespace Api.Ziekenfonds.Data
+namespace ZiekenFonds.API.Data
 {
-    public class ZiekenfondsAPIContext : IdentityDbContext<CustomUser>
+    public class ZiekenFondsApiContext: IdentityDbContext // TODO: Custom user
     {
-
+        public DbSet<Activiteit> Activiteiten { get; set; }
     }
 }
