@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Api.Ziekenfonds.Models
+namespace ZiekenFonds.API.Models
 {
     public class Groepsreis
     {
