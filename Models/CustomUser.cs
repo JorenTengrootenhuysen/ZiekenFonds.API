@@ -7,7 +7,7 @@ namespace ZiekenFonds.API.Models
     {
         [PersonalData]
         [Required(ErrorMessage = "Id is verplicht!")]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [PersonalData]
         [Required(ErrorMessage = "Naam is verplicht!")]
@@ -50,7 +50,7 @@ namespace ZiekenFonds.API.Models
         public string Huisdokter { get; set; }
 
         [PersonalData]
-        public bool IsLid { get; set; } = false;
+        public string ContractNummer { get; set; }
 
         [PersonalData]
         [Required(ErrorMessage = "Email is verplicht!")]

@@ -7,8 +7,8 @@ namespace ZiekenFonds.API.Models
         [Required(ErrorMessage = "Id is verplicht!")]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "GroepsreisId is verplicht!")]
-        public int GroepsreisId { get; set; }
+        [Required(ErrorMessage = "BestemmingId is verplicht!")]
+        public int BestemmingId { get; set; }
 
         [Required(ErrorMessage = "Begindatum is verplicht!")]
         [DataType(DataType.Date)]
