@@ -13,5 +13,8 @@ namespace ZiekenFonds.API.Models
 
         [Required(ErrorMessage = "BestemmingId is verplicht!")]
         public int BestemmingId { get; set; }
+
+        // Relaties
+        public Bestemming Bestemming { get; set; }
     }
 }

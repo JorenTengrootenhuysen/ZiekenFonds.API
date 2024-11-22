@@ -12,5 +12,9 @@ namespace ZiekenFonds.API.Models
 
         [Required(ErrorMessage = "GroepsreisId is verplicht!")]
         public int GroepsreisId { get; set; }
+        
+        // Relaties
+        public Activiteit Activiteit { get; set; }
+        public Groepsreis Groepsreis { get; set; }
     }
 }

@@ -14,5 +14,8 @@ namespace ZiekenFonds.API.Models
         [Required(ErrorMessage = "Beschrijving is verplicht!")]
         [StringLength(200, ErrorMessage = "Naam mag maximaal 200 karakters zijn!")]
         public string Beschrijving { get; set; }
+
+        // Relaties
+        public List<Programma> Programmas { get; set; }
     }
 }

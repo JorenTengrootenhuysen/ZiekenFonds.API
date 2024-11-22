@@ -24,5 +24,8 @@ namespace ZiekenFonds.API.Models
         [Required(ErrorMessage = "Maximum leeftijd is verplicht!")]
         [Range(6, 21, ErrorMessage = "Leeftijd mag niet Boven 21!")]
         public int MaxLeeftijd { get; set; }
+
+        // Relaties
+        public List<Groepsreis> Groepsreizen { get; set; }
     }
 }
