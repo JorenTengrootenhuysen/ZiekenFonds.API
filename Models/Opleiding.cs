@@ -29,6 +29,7 @@ namespace ZiekenFonds.API.Models
         public int OpleidingVereist {  get; set; }
 
         // Relaties
-        public List<OpleidingPersoon> OpleidingenPersonen {  get; set; }
+        public List<OpleidingPersoon> OpleidingenPersoon {  get; set; }
+        public Opleiding ExtraOpleidingen {  get; set; }
     }
 }
