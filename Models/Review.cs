@@ -17,5 +17,9 @@ namespace ZiekenFonds.API.Models
         [Required(ErrorMessage = "Score is verplicht!")]
 
         public int Score { get; set; }
+        
+        // Relaties
+        public CustomUser Persoon {  get; set; }
+        public Bestemming Bestemming { get; set; }
     }
 }

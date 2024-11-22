@@ -14,5 +14,9 @@ namespace ZiekenFonds.API.Models
         public int GroepsreisId { get; set; }
 
         public string Opmerking { get; set; }
+
+        // Relaties
+        public Kind Kind { get; set; }
+        public Groepsreis Groepsreis { get; set; }
     }
 }

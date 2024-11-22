@@ -12,5 +12,9 @@ namespace ZiekenFonds.API.Models
 
         [Required(ErrorMessage = "PersoonId is verplicht!")]
         public string PersoonId { get; set; }
+
+        // Relaties
+        public Opleiding Opleiding { get; set; }
+        public CustomUser Persoon {  get; set; }
     }
 }

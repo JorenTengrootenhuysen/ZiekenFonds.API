@@ -29,5 +29,9 @@ namespace ZiekenFonds.API.Models
         [Required(ErrorMessage = "Medicatie is Verplicht!")]
         [StringLength(200, ErrorMessage = "Naam mag maximaal 200 karakters zijn!")]
         public string Medicatie { get; set; }
+
+        // Relaties
+        public List<Deelnemer> Deelnemers { get; set; }
+        public CustomUser Persoon {  get; set; }
     }
 }

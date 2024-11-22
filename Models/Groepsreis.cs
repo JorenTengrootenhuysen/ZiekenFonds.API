@@ -20,5 +20,12 @@ namespace ZiekenFonds.API.Models
 
         [Required(ErrorMessage = "Prijs is verplicht!")]
         public float Prijs { get; set; }
+
+        // Relaties
+        public Bestemming Bestemming { get; set; }
+        public List<Programma> Programma { get; set; }
+        public List<Deelnemer> Deelnemers { get; set; }
+        public List<Onkosten> Onkosten { get; set; }
+        public List<Monitor> Monitors { get; set; }
     }
 }

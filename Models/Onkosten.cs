@@ -26,5 +26,8 @@ namespace ZiekenFonds.API.Models
         public DateTime Datum { get; set; }
 
         public string Foto { get; set; }
+
+        // Relaties
+        public Groepsreis Groepsreis { get; set; } 
     }
 }

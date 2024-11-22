@@ -58,7 +58,7 @@ namespace ZiekenFonds.API.Models
         public string Email { get; set; }
 
         [PersonalData]
-        public bool isHoofMonitor { get; set; } = false;
+        public bool isHoofdMonitor { get; set; } = false;
 
         [PersonalData]
         [Required(ErrorMessage = "Telefoonnummer is verplicht!")]
@@ -72,5 +72,11 @@ namespace ZiekenFonds.API.Models
         [PersonalData]
         [Required]
         public bool IsActief { get; set; } = false;
+
+        // Relaties
+        public List<Monitor> Monitors { get; set; }
+        public List<Review> Reviews { get; set; }
+        public List<Kind> Kinderen { get; set; }
+        public List<OpleidingPersoon> OpleidingenPersoon { get; set; }
     }
 }
