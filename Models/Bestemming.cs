@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Net;
 
 namespace ZiekenFonds.API.Models
 {
@@ -27,5 +28,7 @@ namespace ZiekenFonds.API.Models
 
         // Relaties
         public List<Groepsreis> Groepsreizen { get; set; }
+        public List<Review> Reviews { get; set; }
+        public List<Foto> Fotos { get; set; }
     }
 }
