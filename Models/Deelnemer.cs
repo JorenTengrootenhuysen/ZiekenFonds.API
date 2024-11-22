@@ -11,12 +11,8 @@ namespace ZiekenFonds.API.Models
         public int KindId { get; set; }
 
         [Required(ErrorMessage = "GroepsreisDetailsId is verplicht!")]
-        public int GroepsreisDetailsId { get; set; }
+        public int GroepsreisId { get; set; }
 
         public string Opmerking { get; set; }
-
-        public int ReviewScore { get; set; }
-
-        public string Review { get; set; }
     }
 }
