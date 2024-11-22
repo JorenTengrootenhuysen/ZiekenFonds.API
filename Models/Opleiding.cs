@@ -4,8 +4,11 @@ namespace ZiekenFonds.API.Models
 {
     public class Opleiding
     {
-        [Required]
+        [Required(ErrorMessage = "Id is verplicht!")]
         public int Id { get; set; }
+        [Required(ErrorMessage = "Naam is verplicht!")]
+        [StringLength(50, ErrorMessage = "Beschrijving mag maximaal 50 karakters lang zijn!")]
+        public string Naam { get; set; }
 
         [Required(ErrorMessage = "Beschrijving is verplicht!")]
         [StringLength(100, ErrorMessage = "Beschrijving mag maximaal 100 karakters lang zijn!")]
@@ -24,5 +27,7 @@ namespace ZiekenFonds.API.Models
         public int AantalPlaatsen { get; set; }
 
         public int OpleidingVereist {  get; set; }
+
+        public Opleiding OpleidingId {  get; set; }
     }
 }

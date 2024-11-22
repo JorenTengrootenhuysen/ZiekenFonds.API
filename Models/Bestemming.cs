@@ -6,6 +6,8 @@ namespace ZiekenFonds.API.Models
     {
         [Required(ErrorMessage = "Id is verplicht!")]
         public int Id { get; set; }
+        [Required(ErrorMessage = "Code is verplicht!")]
+        public string Code { get; set; }
 
         [Required(ErrorMessage = "Naam is verplicht!")]
         [StringLength(75, ErrorMessage = "Naam mag maximaal 75 karakters zijn!")]
