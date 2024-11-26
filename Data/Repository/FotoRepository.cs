@@ -2,7 +2,7 @@
 
 namespace ZiekenFonds.API.Data.Repository
 {
-    public class FotoRepository : GenericRepository<Foto>
+    public class FotoRepository : GenericRepository<Foto>, IFotoRepository
     {
         public FotoRepository(ZiekenFondsApiContext context) : base(context)
         {
