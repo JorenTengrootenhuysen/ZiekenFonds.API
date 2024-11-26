@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Numerics;
+using Monitor = ZiekenFonds.API.Models.Monitor;
 
 namespace ZiekenFonds.API.Data
 {
@@ -17,7 +18,7 @@ namespace ZiekenFonds.API.Data
         public DbSet<Foto> Fotos { get; set; }
         public DbSet<Groepsreis> Groepsreizen { get; set; }
         public DbSet<Kind> Kinderen { get; set; }
-        //public DbSet<Monitor> Monitors { get; set; }
+        public DbSet<Monitor> Monitors { get; set; }
         public DbSet<Onkosten> Onkosten { get; set; }
         public DbSet<Opleiding> Opleidingen { get; set; }
         public DbSet<OpleidingPersoon> OpleidingPersonen { get; set; }
@@ -40,6 +41,32 @@ namespace ZiekenFonds.API.Data
             modelBuilder.Entity<Programma>().ToTable("Programma");
             modelBuilder.Entity<Review>().ToTable("Review");
 
+            //Ak Bestemmming
+            modelBuilder.Entity<Bestemming>()
+                .HasAlternateKey(p => p.Code);
+
+            //Opleiding
+            modelBuilder.Entity<Opleiding>()
+                .HasOne(p => p.HoofdOpleiding)
+                .WithMany(x => x.Opleidingen)
+                .HasForeignKey(y => y.OpleidingVereist)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            //Monitor en Groepsreis
+            modelBuilder.Entity<Monitor>()
+                .HasOne(p => p.Groepsreis)
+                .WithMany(x => x.Monitors)
+                .HasForeignKey(y => y.GroepsreisId)
+                .OnDelete(DeleteBehavior.Restrict)
+                .IsRequired();
+
+            //CustomUser en Monitor 
+            modelBuilder.Entity<Monitor>()
+                .HasOne(p => p.Persoon)
+                .WithMany(x => x.Monitors)
+                .HasForeignKey(y => y.PersoonId)
+                .OnDelete(DeleteBehavior.Restrict)
+                .IsRequired();
 
             //Programma en Activiteit
             modelBuilder.Entity<Programma>()
