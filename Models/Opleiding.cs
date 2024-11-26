@@ -4,8 +4,8 @@ namespace ZiekenFonds.API.Models
 {
     public class Opleiding
     {
-        [Required(ErrorMessage = "Id is verplicht!")]
         public int Id { get; set; }
+
         [Required(ErrorMessage = "Naam is verplicht!")]
         [StringLength(50, ErrorMessage = "Beschrijving mag maximaal 50 karakters lang zijn!")]
         public string Naam { get; set; }
@@ -23,15 +23,16 @@ namespace ZiekenFonds.API.Models
         public DateTime Einddatum { get; set; }
 
         [Required(ErrorMessage = "Aantalplaatsen is verplicht!")]
-
         public int AantalPlaatsen { get; set; }
 
-        public int OpleidingVereist {  get; set; }
-
         // Relaties
-        public List<Opleiding> Opleidingen { get; set; }
-        public Opleiding HoofdOpleiding { get; set; }
-        public List<OpleidingPersoon> OpleidingenPersonen {  get; set; }
-        public Opleiding ExtraOpleidingen {  get; set; }
+        public List<OpleidingPersoon> OpleidingenPersonen { get; set; }
+
+        public Opleiding? HoofdOpleiding { get; set; }
+
+        public int? OpleidingVereist { get; set; }
+
+        public List<Opleiding>? VereisteOpleidingen{  get; set; } 
+
     }
 }

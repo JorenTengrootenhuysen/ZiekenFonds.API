@@ -4,7 +4,6 @@ namespace ZiekenFonds.API.Models
 {
     public class OpleidingPersoon
     {
-        [Required(ErrorMessage = "Id is verplicht!")]
         public int Id { get; set; }
 
         [Required(ErrorMessage = "OpleidingId is verplicht!")]

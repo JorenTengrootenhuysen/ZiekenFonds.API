@@ -6,7 +6,6 @@ namespace ZiekenFonds.API.Models
     public class CustomUser : IdentityUser
     {
         [PersonalData]
-        [Required(ErrorMessage = "Id is verplicht!")]
         public string Id { get; set; }
 
         [PersonalData]
@@ -36,7 +35,7 @@ namespace ZiekenFonds.API.Models
 
         [PersonalData]
         [Required(ErrorMessage = "Postcode is verplicht!")]
-        [StringLength(4, ErrorMessage = "Gemeente mag maximaal 4 karakters lang zijn!")]
+        [StringLength(6, ErrorMessage = "Postcode mag maximaal 6 karakters lang zijn!")]
         public string Postcode { get; set; }
 
         [PersonalData]

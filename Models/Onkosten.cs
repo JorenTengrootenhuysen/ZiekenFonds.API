@@ -4,7 +4,6 @@ namespace ZiekenFonds.API.Models
 {
     public class Onkosten
     {
-        [Required(ErrorMessage = "Id is verplicht!")]
         public int Id { get; set; }
 
         [Required(ErrorMessage = "GroepsreisId is verplicht!")]

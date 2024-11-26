@@ -1,13 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Net;
 
 namespace ZiekenFonds.API.Models
 {
     public class Bestemming
     {
-        [Required(ErrorMessage = "Id is verplicht!")]
         public int Id { get; set; }
+
         [Required(ErrorMessage = "Code is verplicht!")]
+        [StringLength(50, ErrorMessage = "Code mag maximaal 50 karakters zijn!")]
         public string Code { get; set; }
 
         [Required(ErrorMessage = "Naam is verplicht!")]
@@ -19,16 +19,16 @@ namespace ZiekenFonds.API.Models
         public string Beschrijving { get; set; }
 
         [Required(ErrorMessage = "Mininum leeftijd is verplicht!")]
-        [Range(6, 21, ErrorMessage = "Leeftijd mag niet onder 6!")]
         public int MinLeeftijd { get; set; }
 
         [Required(ErrorMessage = "Maximum leeftijd is verplicht!")]
-        [Range(6, 21, ErrorMessage = "Leeftijd mag niet Boven 21!")]
         public int MaxLeeftijd { get; set; }
 
         // Relaties
         public List<Groepsreis> Groepsreizen { get; set; }
+
         public List<Review> Reviews { get; set; }
+
         public List<Foto> Fotos { get; set; }
     }
 }

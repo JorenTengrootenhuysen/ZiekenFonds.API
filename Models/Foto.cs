@@ -4,7 +4,6 @@ namespace ZiekenFonds.API.Models
 {
     public class Foto
     {
-        [Required(ErrorMessage = "Id is verplicht!")]
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Naam is verplicht!")]

@@ -4,7 +4,6 @@ namespace ZiekenFonds.API.Models
 {
     public class Kind
     {
-        [Required(ErrorMessage = "Id is Verplicht!")]
         public int Id { get; set; }
 
         [Required(ErrorMessage = "PersoonId is Verplicht!")]

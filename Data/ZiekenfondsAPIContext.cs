@@ -48,8 +48,8 @@ namespace ZiekenFonds.API.Data
             //Opleiding
             modelBuilder.Entity<Opleiding>()
                 .HasOne(p => p.HoofdOpleiding)
-                .WithMany(x => x.Opleidingen)
-                .HasForeignKey(y => y.OpleidingVereist)
+                .WithMany(p => p.VereisteOpleidingen)
+                .HasForeignKey(p => p.OpleidingVereist)
                 .OnDelete(DeleteBehavior.Restrict);
 
             //Monitor en Groepsreis
