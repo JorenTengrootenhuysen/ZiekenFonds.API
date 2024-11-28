@@ -15,12 +15,10 @@ namespace ZiekenFonds.API.Controllers
         private readonly IUnitOfWork _context;
         private readonly IMapper _mapper;
 
-
         public ActiviteitController(IUnitOfWork context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
-
         }
 
         // Get all
@@ -63,7 +61,6 @@ namespace ZiekenFonds.API.Controllers
                 return BadRequest(ModelState);
             }
 
-
             Activiteit activiteit = _mapper.Map<Activiteit>(activiteitAanmakenDto);
 
             //Job toevoegen aan de DbSet
@@ -104,14 +101,14 @@ namespace ZiekenFonds.API.Controllers
 
         // Update
         [HttpPut("{id}")]
-        public async Task<IActionResult> ActiviteitWijzigen(int id, Activiteit activiteit)
+        public async Task<IActionResult> ActiviteitWijzigen(int id, ActiviteitUpdateDto dto)
         {
-            if (id != activiteit.Id)
+            if (id != dto.Id)
             {
                 return BadRequest("De opgegeven id's komen niet overeen.");
             }
 
-            var existingActiviteit = await _context.ActiviteitenRepository.GetItemAsync(id);
+            Activiteit existingActiviteit = _mapper.Map<Activiteit>(dto);
 
             if (existingActiviteit == null)
             {
@@ -123,14 +120,11 @@ namespace ZiekenFonds.API.Controllers
                 return BadRequest(ModelState);
             }
 
-            existingActiviteit.Naam = activiteit.Naam;
-            existingActiviteit.Beschrijving = activiteit.Beschrijving;
-
-            _context.ActiviteitenRepository.UpdateItem(activiteit);
+            _context.ActiviteitenRepository.UpdateItem(existingActiviteit);
 
             try
             {
-                _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -145,7 +139,6 @@ namespace ZiekenFonds.API.Controllers
             }
 
             return NoContent();
-
         }
     }
 }

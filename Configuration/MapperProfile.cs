@@ -11,6 +11,7 @@ namespace ZiekenFonds.API.Configuration
             //Hier de mappings met CreateMap<>()
             CreateMap<Activiteit, ActiviteitOphalenDto>();
             CreateMap<ActiviteitMakenDto, Activiteit>();
+            CreateMap<ActiviteitUpdateDto, Activiteit>();
         }
     }
 }
