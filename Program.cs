@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ZiekenFonds.API.Data;
+using ZiekenFonds.API.Data.UnitOfWork;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,12 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ZiekenFondsApiContext>(options => options
     .UseSqlServer(builder.Configuration.GetConnectionString("LocalDBConnection")));
+
+// Service voor UnitOfWork
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+// Service voor Automapper
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 
