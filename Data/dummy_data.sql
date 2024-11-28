@@ -1,10 +1,37 @@
+BEGIN TRY
+
+BEGIN TRANSACTION
+
 -- Dummy Data for CustomUser/Persoon
-INSERT INTO dbo.Persoon (id, naam, voornaam, straat, huisnummer, gemeente, postcode, geboortedatum, huisdokter, contractNummer, email, isHoofdMonitor, telefoonNummer, rekeningNummer, isActief)
+--INSERT INTO dbo.Persoon (id, naam, voornaam, straat, huisnummer, gemeente, postcode, geboortedatum, huisdokter, contractNummer, email, isHoofdMonitor, telefoonNummer, rekeningNummer, isActief, AccessFailedCount)
+--VALUES 
+--('user1', 'Jansen', 'Pieter', 'Dorpsstraat', '12A', 'Utrecht', '1234AB', '1985-05-12', 'Dr. Bakker', 'CN123456', 'pieter.jansen@example.com', 1, '0612345678', 'NL91ABNA0417164300', 1, 0),
+--('user2', 'De Vries', 'Anna', 'Kerkstraat', '8', 'Amsterdam', '1012WX', '1990-09-23', 'Dr. Smit', 'CN654321', 'anna.devries@example.com', 0, '0619876543', 'NL02INGB0001234507', 1, 0),
+--('user3', 'Bakker', 'Sven', 'Markt', '22B', 'Rotterdam', '3012CW', '1975-03-18', 'Dr. Janssen', 'CN098765', 'sven.bakker@example.com', 0, '0612345679', 'NL02INGB0001234567', 0, 0),
+--('user4', 'Kramer', 'Iris', 'Langeweg', '45', 'Den Haag', '2501BG', '1988-06-15', 'Dr. Bos', 'CN567890', 'iris.kramer@example.com', 1, '0619876544', 'NL03RABO0123456789', 1, 0);
+
+INSERT INTO dbo.Persoon (
+    Id, Naam, Voornaam, Straat, Huisnummer, Gemeente, Postcode, Geboortedatum, Huisdokter, ContractNummer, 
+    Email, isHoofdMonitor, TelefoonNummer, RekeningNummer, IsActief, UserName, NormalizedUserName, 
+    NormalizedEmail, EmailConfirmed, PasswordHash, SecurityStamp, ConcurrencyStamp, PhoneNumber, 
+    PhoneNumberConfirmed, TwoFactorEnabled, LockoutEnd, LockoutEnabled, AccessFailedCount
+)
 VALUES 
-('user1', 'Jansen', 'Pieter', 'Dorpsstraat', '12A', 'Utrecht', '1234AB', '1985-05-12', 'Dr. Bakker', 'CN123456', 'pieter.jansen@example.com', 1, '0612345678', 'NL91ABNA0417164300', 1),
-('user2', 'De Vries', 'Anna', 'Kerkstraat', '8', 'Amsterdam', '1012WX', '1990-09-23', 'Dr. Smit', 'CN654321', 'anna.devries@example.com', 0, '0619876543', NULL, 1),
-('user3', 'Bakker', 'Sven', 'Markt', '22B', 'Rotterdam', '3012CW', '1975-03-18', 'Dr. Janssen', 'CN098765', 'sven.bakker@example.com', 0, '0612345679', 'NL02INGB0001234567', 1),
-('user4', 'Kramer', 'Iris', 'Langeweg', '45', 'Den Haag', '2501BG', '1988-06-15', 'Dr. Bos', 'CN567890', 'iris.kramer@example.com', 1, '0619876544', 'NL03RABO0123456789', 1);
+('user1', 'Jansen', 'Pieter', 'Dorpsstraat', '12A', 'Utrecht', '1234AB', '1985-05-12', 'Dr. Bakker', 'CN123456',
+ 'pieter.jansen@example.com', 1, '0612345678', 'NL91ABNA0417164300', 1, 'pieterjansen', 'PIETERJANSEN', 
+ 'PIETER.JANSEN@EXAMPLE.COM', 1, NULL, NEWID(), NEWID(), NULL, 0, 0, NULL, 0, 0),
+
+('user2', 'De Vries', 'Anna', 'Kerkstraat', '8', 'Amsterdam', '1012WX', '1990-09-23', 'Dr. Smit', 'CN654321',
+ 'anna.devries@example.com', 0, '0619876543', 'NL02INGB0001234507', 1, 'annadevries', 'ANNADEVRIES', 
+ 'ANNA.DEVRIES@EXAMPLE.COM', 1, NULL, NEWID(), NEWID(), NULL, 0, 0, NULL, 0, 0),
+
+('user3', 'Bakker', 'Sven', 'Markt', '22B', 'Rotterdam', '3012CW', '1975-03-18', 'Dr. Janssen', 'CN098765',
+ 'sven.bakker@example.com', 0, '0612345679', 'NL02INGB0001234567', 0, 'svenbakker', 'SVENBAKKER', 
+ 'SVEN.BAKKER@EXAMPLE.COM', 1, NULL, NEWID(), NEWID(), NULL, 0, 0, NULL, 0, 0),
+
+('user4', 'Kramer', 'Iris', 'Langeweg', '45', 'Den Haag', '2501BG', '1988-06-15', 'Dr. Bos', 'CN567890',
+ 'iris.kramer@example.com', 1, '0619876544', 'NL03RABO0123456789', 1, 'iriskramer', 'IRISKRAMER', 
+ 'IRIS.KRAMER@EXAMPLE.COM', 1, NULL, NEWID(), NEWID(), NULL, 0, 0, NULL, 0, 0);
 
 -- Dummy Data for Bestemming
 SET IDENTITY_INSERT dbo.Bestemming ON;
@@ -18,12 +45,12 @@ SET IDENTITY_INSERT dbo.Bestemming OFF;
 
 -- Dummy Data for Kind
 SET IDENTITY_INSERT dbo.Kind ON;
-INSERT INTO dbo.Kind (id, persoonsId, naam, voornaam, geboortedatum, allergieën, medicatie)
+INSERT INTO dbo.Kind (id, persoonId, naam, voornaam, geboortedatum, allergieën, medicatie)
 VALUES
 (1, 'user1', 'Jansen', 'Lucas', '2010-04-15', 'Pollen', 'Ventolin'),
-(2, 'user2', 'De Vries', 'Sophie', '2012-07-20', NULL, NULL),
+(2, 'user2', 'De Vries', 'Sophie', '2012-07-20', 'Geen', 'Geen'),
 (3, 'user3', 'Bakker', 'Thomas', '2015-09-10', 'Peanuts', 'EpiPen'),
-(4, 'user4', 'Kramer', 'Emma', '2011-12-01', NULL, NULL);
+(4, 'user4', 'Kramer', 'Emma', '2011-12-01', 'Geen', 'Geen');
 SET IDENTITY_INSERT dbo.Kind OFF;
 
 -- Dummy Data for Groepsreis
@@ -38,7 +65,7 @@ SET IDENTITY_INSERT dbo.Groepsreis OFF;
 
 -- Dummy Data for Deelnemer
 SET IDENTITY_INSERT dbo.Deelnemer ON;
-INSERT INTO dbo.Deelnemer (id, kindId, groepsreisId, opmerkingen)
+INSERT INTO dbo.Deelnemer (id, kindId, groepsreisId, opmerking)
 VALUES
 (1, 1, 1, 'Needs extra assistance during trips'),
 (2, 2, 1, 'No special notes'),
@@ -67,18 +94,18 @@ VALUES
 SET IDENTITY_INSERT dbo.Activiteit OFF;
 
 -- Dummy Data for Programma
-SET IDENTITY_INSERT dbo.Programma ON;
+
 INSERT INTO dbo.Programma (id, activiteitId, groepsreisId)
 VALUES
 (1, 1, 1),
 (2, 2, 2),
 (3, 3, 3),
 (4, 4, 4);
-SET IDENTITY_INSERT dbo.Programma OFF;
+
 
 -- Dummy Data for Monitor
 SET IDENTITY_INSERT dbo.Monitors ON;
-INSERT INTO dbo.Monitors (id, persoonsId, groepsreisId, isHoofdMonitor)
+INSERT INTO dbo.Monitors (id, persoonId, groepsreisId, isHoofdMonitor)
 VALUES
 (1, 'user1', 1, 1),
 (2, 'user2', 2, 0),
@@ -100,15 +127,15 @@ SET IDENTITY_INSERT dbo.Onkosten OFF;
 SET IDENTITY_INSERT dbo.Opleiding ON;
 INSERT INTO dbo.Opleiding (id, naam, beschrijving, begindatum, einddatum, aantalPlaatsen, opleidingVereist)
 VALUES
-(1, 'First Aid Training', 'Basic first aid skills', '2024-05-01', '2024-05-05', 20, 0),
-(2, 'Leadership Training', 'Team management skills', '2024-06-01', '2024-06-10', 15, 0),
-(3, 'Conflict Resolution', 'Skills to handle conflicts', '2024-07-15', '2024-07-20', 10, 1),
-(4, 'Event Management', 'Organizing large-scale events', '2024-08-05', '2024-08-10', 25, 0);
+(1, 'First Aid Training', 'Basic first aid skills', '2024-05-01', '2024-05-05', 20, NULL),
+(2, 'Leadership Training', 'Team management skills', '2024-06-01', '2024-06-10', 15, NULL),
+(3, 'Conflict Resolution', 'Skills to handle conflicts', '2024-07-15', '2024-07-20', 10, NULL),
+(4, 'Event Management', 'Organizing large-scale events', '2024-08-05', '2024-08-10', 25, NULL);
 SET IDENTITY_INSERT dbo.Opleiding OFF;
 
 -- Dummy Data for OpleidingPersoon
 SET IDENTITY_INSERT dbo.[Opleiding Persoon] ON;
-INSERT INTO dbo.[Opleiding Persoon] (id, opleidingId, persoonsId)
+INSERT INTO dbo.[Opleiding Persoon] (id, opleidingId, persoonId)
 VALUES
 (1, 1, 'user1'),
 (2, 2, 'user2'),
@@ -118,10 +145,17 @@ SET IDENTITY_INSERT dbo.[Opleiding Persoon] OFF;
 
 -- Dummy Data for Review
 SET IDENTITY_INSERT dbo.Review ON;
-INSERT INTO dbo.Review (id, persoonsId, bestemmingId, tekst, score)
+INSERT INTO dbo.Review (id, persoonId, bestemmingId, tekst, score)
 VALUES
 (1, 'user1', 1, 'Amazing experience in Barcelona!', 5),
 (2, 'user2', 2, 'Loved the Colosseum in Rome.', 4),
 (3, 'user3', 3, 'Paris was enchanting!', 5),
 (4, 'user4', 4, 'Informative and inspiring trip to Berlin.', 4);
 SET IDENTITY_INSERT dbo.Review OFF;
+COMMIT;
+
+END TRY
+
+BEGIN CATCH
+ROLLBACK;
+END CATCH
