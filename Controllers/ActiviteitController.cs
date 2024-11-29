@@ -23,7 +23,7 @@ namespace ZiekenFonds.API.Controllers
 
         // Get all
         [HttpGet]
-        public async Task<ActionResult<Activiteit>> GetActiviteiten()
+        public async Task<ActionResult<ActiviteitOphalenDto>> GetActiviteiten()
         {
             IEnumerable<Activiteit> activiteiten = await _context.ActiviteitenRepository.GetAllItemsAsync();
 
@@ -34,7 +34,7 @@ namespace ZiekenFonds.API.Controllers
 
         // Get by ID
         [HttpGet("{id}")]
-        public async Task<ActionResult<Activiteit>> GetActiviteit(int id)
+        public async Task<ActionResult<ActiviteitOphalenDto>> GetActiviteit(int id)
         {
             Activiteit activiteit = await _context.ActiviteitenRepository.GetItemAsync(id);
 
@@ -50,7 +50,7 @@ namespace ZiekenFonds.API.Controllers
 
         // Add
         [HttpPost]
-        public async Task<ActionResult<Activiteit>> ActiviteitToevoegen(ActiviteitMakenDto activiteitAanmakenDto)
+        public async Task<ActionResult<ActiviteitMakenDto>> ActiviteitToevoegen(ActiviteitMakenDto activiteitAanmakenDto)
         {
             //Validatie
             if (_context.ActiviteitenRepository == null)
