@@ -1,7 +1,12 @@
+
 ﻿using AutoMapper;
 using ZiekenFonds.API.Dto.Monitor;
-using ZiekenFonds.API.Models;
 using Monitor = ZiekenFonds.API.Models.Monitor;
+using AutoMapper;
+using ZiekenFonds.API.Dto.Bestemming;
+using ZiekenFonds.API.Dto.Activiteit;
+using ZiekenFonds.API.Models;
+
 
 namespace ZiekenFonds.API.Configuration
 {
@@ -9,7 +14,14 @@ namespace ZiekenFonds.API.Configuration
     {
         public MapperProfile()
         {
+            //Bestemming controller
+            CreateMap<Bestemming, AllBestemmingenDto>();
+            CreateMap<Review, BestemmingWithReviews>();
+            CreateMap<Foto, BestemmingWithFoto>();
+            CreateMap<Groepsreis, BestemmingWithGroepsreis>();
+            
             //Hier de mappings met CreateMap<>()
+
 
             //Monitor mappings
             CreateMap<Monitor, GetMonitorDto>()
@@ -27,6 +39,11 @@ namespace ZiekenFonds.API.Configuration
                 .ForMember(dest => dest.Opleidingen, opt => opt.MapFrom(src => src.Persoon.OpleidingenPersonen.Select(o => o.Opleiding.Naam).ToList()));
 
             CreateMap<CreateMonitorDto, Monitor>();
+
+            CreateMap<Activiteit, ActiviteitOphalenDto>();
+            CreateMap<ActiviteitMakenDto, Activiteit>();
+            CreateMap<ActiviteitUpdateDto, Activiteit>();
+
         }
     }
 }
