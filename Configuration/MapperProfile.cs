@@ -1,5 +1,6 @@
-﻿using AutoMapper;
+using AutoMapper;
 using ZiekenFonds.API.Dto.Bestemming;
+using ZiekenFonds.API.Dto.Activiteit;
 using ZiekenFonds.API.Models;
 
 namespace ZiekenFonds.API.Configuration
@@ -13,7 +14,11 @@ namespace ZiekenFonds.API.Configuration
             CreateMap<Review, BestemmingWithReviews>();
             CreateMap<Foto, BestemmingWithFoto>();
             CreateMap<Groepsreis, BestemmingWithGroepsreis>();
-
+            
+            //Hier de mappings met CreateMap<>()
+            CreateMap<Activiteit, ActiviteitOphalenDto>();
+            CreateMap<ActiviteitMakenDto, Activiteit>();
+            CreateMap<ActiviteitUpdateDto, Activiteit>();
         }
     }
 }
