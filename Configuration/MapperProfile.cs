@@ -1,5 +1,6 @@
 using AutoMapper;
 using ZiekenFonds.API.Dto.Opleiding;
+using ZiekenFonds.API.Dto.Bestemming;
 using ZiekenFonds.API.Dto.Activiteit;
 using ZiekenFonds.API.Models;
 
@@ -9,7 +10,6 @@ namespace ZiekenFonds.API.Configuration
     {
         public MapperProfile()
         {
-
             // Opleiding Mappings
             CreateMap<Opleiding, OpleidingWithPersonenDto>()
                 .ForMember(dest => dest.OpleidingenPersonen, opt => opt.MapFrom(src => src.OpleidingenPersonen))
@@ -37,6 +37,12 @@ namespace ZiekenFonds.API.Configuration
             CreateMap<OpleidingResponseDto, Opleiding>()
                 .ReverseMap();
                 
+            //Bestemming controller
+            CreateMap<Bestemming, AllBestemmingenDto>();
+            CreateMap<Review, BestemmingWithReviews>();
+            CreateMap<Foto, BestemmingWithFoto>();
+            CreateMap<Groepsreis, BestemmingWithGroepsreis>();
+            
             //Hier de mappings met CreateMap<>()
             CreateMap<Activiteit, ActiviteitOphalenDto>();
             CreateMap<ActiviteitMakenDto, Activiteit>();
