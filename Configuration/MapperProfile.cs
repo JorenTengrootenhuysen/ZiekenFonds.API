@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using ZiekenFonds.API.Dto.Bestemming;
+using ZiekenFonds.API.Models;
 
 namespace ZiekenFonds.API.Configuration
 {
@@ -6,7 +8,12 @@ namespace ZiekenFonds.API.Configuration
     {
         public MapperProfile() 
         {
-            //Hier de mappings met CreateMap<>()
+            //Bestemming controller
+            CreateMap<Bestemming, AllBestemmingenDto>();
+            CreateMap<Review, BestemmingWithReviews>();
+            CreateMap<Foto, BestemmingWithFoto>();
+            CreateMap<Groepsreis, BestemmingWithGroepsreis>();
+
         }
     }
 }
