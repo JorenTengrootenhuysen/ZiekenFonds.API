@@ -19,6 +19,7 @@ namespace ZiekenFonds.API.Data.Repository
                 .Include(groepsreis => groepsreis.Programmas)
                     .ThenInclude(programma => programma.Activiteit)
                 .Include(groepsreis => groepsreis.Deelnemers)
+                    .ThenInclude(deelnemers => deelnemers.Kind)
                 .Include(groepsreis => groepsreis.Monitors)
                 .FirstOrDefaultAsync(groepsreis => groepsreis.Id == id);
         }
@@ -31,6 +32,21 @@ namespace ZiekenFonds.API.Data.Repository
                 return false;
             else
                 return true;
+        }
+
+        public async Task<IEnumerable<Groepsreis>> GetCompleteGroepsReizenAsync()
+        {
+            return await _context.Set<Groepsreis>()
+                .Include(groepsreis => groepsreis.Bestemming)
+                    .ThenInclude(bestemming => bestemming.Fotos)
+                .Include(groepsreis => groepsreis.Bestemming)
+                    .ThenInclude(bestemming => bestemming.Reviews)
+                .Include(groepsreis => groepsreis.Programmas)
+                    .ThenInclude(programma => programma.Activiteit)
+                .Include(groepsreis => groepsreis.Deelnemers)
+                    .ThenInclude(deelnemers => deelnemers.Kind)
+                .Include(groepsreis => groepsreis.Monitors)
+                .ToListAsync();
         }
     }
 }

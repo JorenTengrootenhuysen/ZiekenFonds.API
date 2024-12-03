@@ -1,12 +1,14 @@
-
-﻿using AutoMapper;
+using AutoMapper;
 using ZiekenFonds.API.Dto.Monitor;
 using Monitor = ZiekenFonds.API.Models.Monitor;
+
 using AutoMapper;
+
 using ZiekenFonds.API.Dto.Bestemming;
 using ZiekenFonds.API.Dto.Activiteit;
 using ZiekenFonds.API.Models;
-
+using ZiekenFonds.API.Dto.Groepsreis;
+using ZiekenFonds.API.Data.Repository;
 
 namespace ZiekenFonds.API.Configuration
 {
@@ -19,9 +21,8 @@ namespace ZiekenFonds.API.Configuration
             CreateMap<Review, BestemmingWithReviews>();
             CreateMap<Foto, BestemmingWithFoto>();
             CreateMap<Groepsreis, BestemmingWithGroepsreis>();
-            
-            //Hier de mappings met CreateMap<>()
 
+            //Hier de mappings met CreateMap<>()
 
             //Monitor mappings
             CreateMap<Monitor, GetMonitorDto>()
@@ -40,10 +41,21 @@ namespace ZiekenFonds.API.Configuration
 
             CreateMap<CreateMonitorDto, Monitor>();
 
+            // Groepsreis mappings
+            CreateMap<Groepsreis, GroepsreisOphalenDto>()
+                .ForMember(dest => dest.Bestemming, opt => opt.MapFrom(src => src.Bestemming.Naam));
+
+            CreateMap<Deelnemer, GroepsreisDeelnemerOphalenDto>()
+                .ForMember(dest => dest.DeelnemerNaam, opt => opt.MapFrom(src => $"{src.Kind.Voornaam} {src.Kind.Naam}"))
+                .ForMember(dest => dest.Omschrijving, opt => opt.MapFrom(src => src.Opmerking));
+
+            CreateMap<Programma, GroepsreisProgrammaDto>()
+                .ForMember(dest => dest.activiteitTitel, opt => opt.MapFrom(src => src.Activiteit.Naam))
+                .ForMember(dest => dest.activiteitOmschrijving, opt => opt.MapFrom(src => src.Activiteit.Beschrijving));
+
             CreateMap<Activiteit, ActiviteitOphalenDto>();
             CreateMap<ActiviteitMakenDto, Activiteit>();
             CreateMap<ActiviteitUpdateDto, Activiteit>();
-
         }
     }
 }
