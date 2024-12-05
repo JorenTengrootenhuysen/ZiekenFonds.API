@@ -9,7 +9,6 @@ namespace ZiekenFonds.API.Models
         public string PersoonId { get; set; }
         [Required(ErrorMessage = "GroepsreisId is verplicht!")]
         public int GroepsreisId { get; set; }
-
         public bool IsHoofdMonitor { get; set; } // staat fout in ERD, moet overeenkomen met CustomUser.cs
 
         // Relaties

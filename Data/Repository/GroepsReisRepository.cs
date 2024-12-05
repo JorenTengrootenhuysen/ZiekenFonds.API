@@ -22,5 +22,15 @@ namespace ZiekenFonds.API.Data.Repository
                 .Include(groepsreis => groepsreis.Monitors)
                 .FirstOrDefaultAsync(groepsreis => groepsreis.Id == id);
         }
+
+        public async Task<bool> ExistsAsync(int id)
+        {
+            var gevonden = await _context.Set<Groepsreis>().FindAsync(id);
+
+            if (gevonden == null)
+                return false;
+            else
+                return true;
+        }
     }
 }
