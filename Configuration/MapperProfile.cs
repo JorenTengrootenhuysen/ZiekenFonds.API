@@ -14,12 +14,14 @@ namespace ZiekenFonds.API.Configuration
             CreateMap<ActiviteitMakenDto, Activiteit>();
             CreateMap<ActiviteitUpdateDto, Activiteit>();
 
-            CreateMap<Kind, KindOphalenDto>().ForMember(dest => dest.OuderNaam,
-                opt => opt.MapFrom(src => $"{src.Persoon.Voornaam} {src.Persoon.Naam}")); ;
-            CreateMap<KindMakenDto, Kind>()
+            CreateMap<Kind, GetKind>()
+                .ForMember(dest => dest.OuderNaam, opt => opt.MapFrom(src => src.Persoon.Naam))
+                .ForMember(dest => dest.OuderVoornaam, opt => opt.MapFrom(src => src.Persoon.Voornaam))
+                .ReverseMap();
+            CreateMap<CreateKind, Kind>()
                 .ForMember(dest => dest.PersoonId, opt => opt.MapFrom(src => src.PersoonId))
-                .ReverseMap(); // Koppel PersoonId
-            CreateMap<KindUpdateDto, Kind>()
+                .ReverseMap();
+            CreateMap<UpdateKind, Kind>()
                 .ReverseMap();
         }
     }

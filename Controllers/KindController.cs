@@ -22,18 +22,18 @@ namespace ZiekenFonds.API.Controllers
 
         // Get all
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<KindOphalenDto>>> GetKinderen()
+        public async Task<ActionResult<IEnumerable<GetKind>>> GetKinderen()
         {
             IEnumerable<Kind> kinderen = await _context.KindRepository.GetAllItemsAsync();
 
-            List<KindOphalenDto> dtos = _mapper.Map<List<KindOphalenDto>>(kinderen);
+            List<GetKind> dtos = _mapper.Map<List<GetKind>>(kinderen);
 
             return Ok(dtos);
         }
 
         // Get by ID
         [HttpGet("{id}")]
-        public async Task<ActionResult<KindOphalenDto>> GetKind(int id)
+        public async Task<ActionResult<GetKind>> GetKind(int id)
         {
             Kind kind = await _context.KindRepository.GetItemAsync(id);
 
@@ -42,14 +42,14 @@ namespace ZiekenFonds.API.Controllers
                 return NotFound("Er is geen kind gevonden met deze id");
             }
 
-            KindOphalenDto dto = _mapper.Map<KindOphalenDto>(kind);
+            GetKind dto = _mapper.Map<GetKind>(kind);
 
             return Ok(dto);
         }
 
         // Add
         [HttpPost]
-        public async Task<ActionResult<KindMakenDto>> KindToevoegen(KindMakenDto kindMakenDto)
+        public async Task<ActionResult> KindToevoegen(CreateKind kindMakenDto)
         {
             // Validatie
             if (_context.KindRepository == null)
@@ -71,10 +71,10 @@ namespace ZiekenFonds.API.Controllers
             }
             catch (DbUpdateException dbError)
             {
-                return BadRequest(dbError);
+                return BadRequest(dbError.InnerException.Message);
             }
 
-            return CreatedAtAction(nameof(GetKind), new { id = kind.Id }, kind);
+            return CreatedAtAction(null, null);
         }
 
         // Delete
@@ -100,7 +100,7 @@ namespace ZiekenFonds.API.Controllers
 
         // Update
         [HttpPut("{id}")]
-        public async Task<IActionResult> KindWijzigen(int id, KindUpdateDto dto)
+        public async Task<IActionResult> KindWijzigen(int id, UpdateKind dto)
         {
             if (id != dto.Id)
             {

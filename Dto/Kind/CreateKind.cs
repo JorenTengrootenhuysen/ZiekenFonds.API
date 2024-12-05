@@ -1,6 +1,6 @@
 ﻿namespace ZiekenFonds.API.Dto.Kind
 {
-    public class KindMakenDto
+    public class CreateKind
     {
         public string PersoonId { get; set; }
         public string Naam { get; set; }
