@@ -1,4 +1,5 @@
-﻿using ZiekenFonds.API.Models;
+﻿using System.Linq.Expressions;
+using ZiekenFonds.API.Models;
 
 namespace ZiekenFonds.API.Data.Repository
 {
@@ -9,5 +10,7 @@ namespace ZiekenFonds.API.Data.Repository
         Task<IEnumerable<Groepsreis>> GetCompleteGroepsReizenAsync();
 
         Task<bool> ExistsAsync(int id);
+
+        Task<IEnumerable<Programma>> GetAllProgrammasAsync(Expression<Func<Programma, bool>> predicate);
     }
 }

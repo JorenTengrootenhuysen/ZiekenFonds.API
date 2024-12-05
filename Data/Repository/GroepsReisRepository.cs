@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 using ZiekenFonds.API.Models;
 
 namespace ZiekenFonds.API.Data.Repository
@@ -47,6 +48,11 @@ namespace ZiekenFonds.API.Data.Repository
                     .ThenInclude(deelnemers => deelnemers.Kind)
                 .Include(groepsreis => groepsreis.Monitors)
                 .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Programma>> GetAllProgrammasAsync(Expression<Func<Programma, bool>> predicate)
+        {
+            return await _context.Programmas.Where(predicate).ToListAsync();
         }
     }
 }
