@@ -10,7 +10,5 @@ namespace ZiekenFonds.API.Data.Repository
         Task<IEnumerable<Groepsreis>> GetCompleteGroepsReizenAsync();
 
         Task<bool> ExistsAsync(int id);
-
-        Task<IEnumerable<Programma>> GetAllProgrammasAsync(Expression<Func<Programma, bool>> predicate);
     }
 }

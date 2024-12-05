@@ -49,10 +49,5 @@ namespace ZiekenFonds.API.Data.Repository
                 .Include(groepsreis => groepsreis.Monitors)
                 .ToListAsync();
         }
-
-        public async Task<IEnumerable<Programma>> GetAllProgrammasAsync(Expression<Func<Programma, bool>> predicate)
-        {
-            return await _context.Programmas.Where(predicate).ToListAsync();
-        }
     }
 }
