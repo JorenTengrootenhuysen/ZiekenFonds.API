@@ -27,6 +27,7 @@ namespace ZiekenFonds.API.Configuration
                 .ForMember(dest => dest.Opleidingen, opt => opt.MapFrom(src => src.Persoon.OpleidingenPersonen.Select(o => o.Opleiding.Naam).ToList()));
 
             CreateMap<CreateMonitorDto, Monitor>();
+            CreateMap<UpdateMonitorDto, Monitor>();
         }
     }
 }
