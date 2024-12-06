@@ -95,12 +95,12 @@ SET IDENTITY_INSERT dbo.Activiteit OFF;
 
 -- Dummy Data for Programma
 
-INSERT INTO dbo.Programma (id, activiteitId, groepsreisId)
+INSERT INTO dbo.Programma (activiteitId, groepsreisId)
 VALUES
-(1, 1, 1),
-(2, 2, 2),
-(3, 3, 3),
-(4, 4, 4);
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4);
 
 
 -- Dummy Data for Monitor

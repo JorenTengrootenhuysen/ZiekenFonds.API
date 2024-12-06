@@ -140,6 +140,7 @@ namespace ZiekenFonds.API.Data
             modelBuilder.Entity<Kind>()
                 .HasOne(p => p.Persoon)
                 .WithMany(x => x.Kinderen)
+                .HasForeignKey(y => y.PersoonId)
                 .OnDelete(DeleteBehavior.Restrict)
                 .IsRequired();
 

@@ -1,4 +1,5 @@
-﻿using ZiekenFonds.API.Data.Repository;
+﻿using Microsoft.EntityFrameworkCore.Storage;
+using ZiekenFonds.API.Data.Repository;
 
 namespace ZiekenFonds.API.Data.UnitOfWork
 {
@@ -14,6 +15,8 @@ namespace ZiekenFonds.API.Data.UnitOfWork
         IOnkostenRepository OnkostenRepository { get; }
         IOpleidingRepository OpleidingRepository { get; }
         IReviewRepository ReviewRepository { get; }
+
+        IDbContextTransaction BeginTransaction();
 
         public Task SaveChangesAsync();
     }
