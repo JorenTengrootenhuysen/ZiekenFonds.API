@@ -4,7 +4,6 @@ namespace ZiekenFonds.API.Models
 {
     public class Programma
     {
-        public int Id { get; set; }
 
         [Required(ErrorMessage = "ActiviteitId is verplicht!")]
         public int ActiviteitId { get; set; }
