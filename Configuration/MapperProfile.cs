@@ -1,15 +1,12 @@
 using AutoMapper;
 using ZiekenFonds.API.Dto.Monitor;
 using Monitor = ZiekenFonds.API.Models.Monitor;
-using AutoMapper;
 using ZiekenFonds.API.Dto.Activiteit;
 using ZiekenFonds.API.Dto.Bestemming;
 using ZiekenFonds.API.Dto.Groepsreis;
-using ZiekenFonds.API.Dto.Monitor;
 using ZiekenFonds.API.Dto.Onkosten;
 using ZiekenFonds.API.Dto.Kind;
 using ZiekenFonds.API.Models;
-using Monitor = ZiekenFonds.API.Models.Monitor;
 
 namespace ZiekenFonds.API.Configuration
 {
