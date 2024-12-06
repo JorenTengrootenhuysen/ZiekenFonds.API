@@ -1,10 +1,11 @@
 
-﻿using AutoMapper;
+using AutoMapper;
 using ZiekenFonds.API.Dto.Monitor;
 using Monitor = ZiekenFonds.API.Models.Monitor;
 using AutoMapper;
 using ZiekenFonds.API.Dto.Bestemming;
 using ZiekenFonds.API.Dto.Activiteit;
+using ZiekenFonds.API.Dto.Onkosten;
 using ZiekenFonds.API.Dto.Kind;
 using ZiekenFonds.API.Models;
 
@@ -46,6 +47,13 @@ namespace ZiekenFonds.API.Configuration
             CreateMap<ActiviteitMakenDto, Activiteit>();
             CreateMap<ActiviteitUpdateDto, Activiteit>();
 
+
+            //Onkosten 
+            CreateMap<Onkosten, GetOnkostenDto>();
+            CreateMap<CreateOnkostenDto, Onkosten>();
+            CreateMap<UpdateOnkostenDto, Onkosten>();
+            
+            //Kind
             CreateMap<Kind, GetKind>()
                 .ForMember(dest => dest.OuderNaam, opt => opt.MapFrom(src => src.Persoon.Naam))
                 .ForMember(dest => dest.OuderVoornaam, opt => opt.MapFrom(src => src.Persoon.Voornaam))
@@ -55,6 +63,7 @@ namespace ZiekenFonds.API.Configuration
                 .ReverseMap();
             CreateMap<UpdateKind, Kind>()
                 .ReverseMap();
+
         }
     }
 }
