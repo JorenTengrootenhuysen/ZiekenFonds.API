@@ -1,4 +1,5 @@
-﻿using ZiekenFonds.API.Data.Repository;
+﻿using Microsoft.EntityFrameworkCore.Storage;
+using ZiekenFonds.API.Data.Repository;
 
 namespace ZiekenFonds.API.Data.UnitOfWork
 {
@@ -19,6 +20,11 @@ namespace ZiekenFonds.API.Data.UnitOfWork
         public UnitOfWork(ZiekenFondsApiContext context)
         {
             _context = context;
+        }
+
+        public IDbContextTransaction BeginTransaction()
+        {
+            return _context.Database.BeginTransaction();
         }
 
         public IActiviteitRepository ActiviteitenRepository

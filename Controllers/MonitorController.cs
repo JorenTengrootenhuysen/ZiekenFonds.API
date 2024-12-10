@@ -78,36 +78,97 @@ namespace ZiekenFonds.API.Controllers
         [HttpPost("CreateMonitor")]
         public async Task<ActionResult<CreateMonitorDto>> CreateMonitor(CreateMonitorDto dto)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            // Controleer of Groepsreis bestaat
-            if (!await _uow.GroepsReisRepository.ExistsAsync(dto.GroepsreisId))
-            {
-                Console.WriteLine($"Groepsreis met ID {dto.GroepsreisId} bestaat niet.");
-                return BadRequest("De opgegeven Groepsreis bestaat niet.");
-            }
-
-            // Map DTO naar Monitor-entiteit
-            Monitor monitor = _mapper.Map<Monitor>(dto);
-
-            // Voeg nieuwe Monitor toe
-            await _uow.MonitorRepository.AddItemAsync(monitor);
-
             try
             {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                // Controleer of Groepsreis bestaat
+                if (!await _uow.GroepsReisRepository.ExistsAsync(dto.GroepsreisId))
+                {
+                    Console.WriteLine($"Groepsreis met ID {dto.GroepsreisId} bestaat niet.");
+                    return BadRequest("De opgegeven Groepsreis bestaat niet.");
+                }
+
+                // Map DTO naar Monitor-entiteit
+                Monitor monitor = _mapper.Map<Monitor>(dto);
+
+                // Voeg nieuwe Monitor toe
+                await _uow.MonitorRepository.AddItemAsync(monitor);
                 await _uow.SaveChangesAsync();
+
+                return CreatedAtAction(nameof(CreateMonitor),null);
             }
             catch (DbUpdateException ex) 
             {
                 return BadRequest(ex);
             }
-            
-
-            return CreatedAtAction(nameof(GetMonitorById), new { id = monitor.Id }, monitor);
         }
 
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> MonitorVerwijderen(int id)
+        {
+            if(_uow.MonitorRepository == null)
+            {
+                return NotFound();
+            }
+
+            var monitor = await _uow.MonitorRepository.GetItemAsync(id);
+
+            if(monitor == null)
+            {
+                return NotFound();
+            }
+
+            _uow.MonitorRepository.DeleteItem(monitor);
+
+            await _uow.SaveChangesAsync();
+
+            return Ok();
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult> UpdateMonitor(int id, UpdateMonitorDto dto)
+        {
+            if (id != id)
+            {
+                return BadRequest();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            Monitor monitor = _mapper.Map<Monitor>(dto);
+
+            if(!await _uow.GroepsReisRepository.ExistsAsync(monitor.GroepsreisId))
+            {
+                return BadRequest("Deze groepsreis bestaat niet");
+            }
+
+            //TODO: Check op de toevoeging van geldige user
+
+            _uow.MonitorRepository.UpdateItem(monitor);
+
+            try
+            {
+                await _uow.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException) 
+            {
+                if (_uow.MonitorRepository.GetItemAsync(id).Result != null)
+                {
+                    return NotFound("Er is geen monitor gevonden met deze id");
+                } else
+                {
+                    throw;
+                }
+            }
+           
+            return NoContent();
+        }
     }
 }

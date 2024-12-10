@@ -95,12 +95,12 @@ SET IDENTITY_INSERT dbo.Activiteit OFF;
 
 -- Dummy Data for Programma
 
-INSERT INTO dbo.Programma (id, activiteitId, groepsreisId)
+INSERT INTO dbo.Programma (activiteitId, groepsreisId)
 VALUES
-(1, 1, 1),
-(2, 2, 2),
-(3, 3, 3),
-(4, 4, 4);
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4);
 
 
 -- Dummy Data for Monitor
@@ -128,9 +128,9 @@ SET IDENTITY_INSERT dbo.Opleiding ON;
 INSERT INTO dbo.Opleiding (id, naam, beschrijving, begindatum, einddatum, aantalPlaatsen, opleidingVereist)
 VALUES
 (1, 'First Aid Training', 'Basic first aid skills', '2024-05-01', '2024-05-05', 20, NULL),
-(2, 'Leadership Training', 'Team management skills', '2024-06-01', '2024-06-10', 15, NULL),
-(3, 'Conflict Resolution', 'Skills to handle conflicts', '2024-07-15', '2024-07-20', 10, NULL),
-(4, 'Event Management', 'Organizing large-scale events', '2024-08-05', '2024-08-10', 25, NULL);
+(2, 'Leadership Training', 'Team management skills', '2024-06-01', '2024-06-10', 15, 1),
+(3, 'Conflict Resolution', 'Skills to handle conflicts', '2024-07-15', '2024-07-20', 10, 2),
+(4, 'Event Management', 'Organizing large-scale events', '2024-08-05', '2024-08-10', 25, 2);
 SET IDENTITY_INSERT dbo.Opleiding OFF;
 
 -- Dummy Data for OpleidingPersoon
