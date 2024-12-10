@@ -96,13 +96,15 @@ namespace ZiekenFonds.API.Configuration
             CreateMap<Kind, GetKind>()
                 .ForMember(dest => dest.OuderNaam, opt => opt.MapFrom(src => src.Persoon.Naam))
                 .ForMember(dest => dest.OuderVoornaam, opt => opt.MapFrom(src => src.Persoon.Voornaam))
-                .ReverseMap();
+                .ForMember(dest => dest.Allergieën, opt => opt.MapFrom(src => src.Allergieën ?? "Geen"))
+                .ForMember(dest => dest.Medicatie, opt => opt.MapFrom(src => src.Medicatie ?? "Geen"));
             CreateMap<CreateKind, Kind>()
                 .ForMember(dest => dest.PersoonId, opt => opt.MapFrom(src => src.PersoonId))
-                .ReverseMap();
+                .ForMember(dest => dest.Allergieën, opt => opt.MapFrom(src => src.Allergieën ?? "Geen"))
+                .ForMember(dest => dest.Medicatie, opt => opt.MapFrom(src => src.Medicatie ?? "Geen"));
             CreateMap<UpdateKind, Kind>()
-                .ReverseMap();
-
+                .ForMember(dest => dest.Allergieën, opt => opt.MapFrom(src => src.Allergieën ?? "Geen"))
+                .ForMember(dest => dest.Medicatie, opt => opt.MapFrom(src => src.Medicatie ?? "Geen"));
         }
     }
 }

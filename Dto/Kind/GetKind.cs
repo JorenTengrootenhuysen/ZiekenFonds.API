@@ -15,8 +15,8 @@ namespace ZiekenFonds.API.Dto.Kind
         [Required(ErrorMessage = "Einddatum is verplicht!")]
         [DataType(DataType.Date)]
         public DateTime Geboortedatum { get; set; }
-        public string Allergieën { get; set; }
-        public string Medicatie { get; set; }
+        public string? Allergieën { get; set; }
+        public string? Medicatie { get; set; }
 
         // Extra velden voor persoon als ouder
         public string OuderNaam { get; set; }

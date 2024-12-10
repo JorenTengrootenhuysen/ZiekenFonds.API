@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ZiekenFonds.API.Data;
 
@@ -11,9 +12,11 @@ using ZiekenFonds.API.Data;
 namespace ZiekenFonds.API.Migrations
 {
     [DbContext(typeof(ZiekenFondsApiContext))]
-    partial class ZiekenFondsApiContextModelSnapshot : ModelSnapshot
+    [Migration("20241210122123_InitialFix")]
+    partial class InitialFix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -587,6 +590,9 @@ namespace ZiekenFonds.API.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("GroepsreisId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Id")
                         .HasColumnType("int");
 
                     b.HasKey("ActiviteitId", "GroepsreisId");

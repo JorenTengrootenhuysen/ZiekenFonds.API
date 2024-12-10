@@ -48,9 +48,9 @@ SET IDENTITY_INSERT dbo.Kind ON;
 INSERT INTO dbo.Kind (id, persoonId, naam, voornaam, geboortedatum, allergieën, medicatie)
 VALUES
 (1, 'user1', 'Jansen', 'Lucas', '2010-04-15', 'Pollen', 'Ventolin'),
-(2, 'user2', 'De Vries', 'Sophie', '2012-07-20', 'Geen', 'Geen'),
+(2, 'user2', 'De Vries', 'Sophie', '2012-07-20', NULL, NULL),
 (3, 'user3', 'Bakker', 'Thomas', '2015-09-10', 'Peanuts', 'EpiPen'),
-(4, 'user4', 'Kramer', 'Emma', '2011-12-01', 'Geen', 'Geen');
+(4, 'user4', 'Kramer', 'Emma', '2011-12-01', NULL, NULL);
 SET IDENTITY_INSERT dbo.Kind OFF;
 
 -- Dummy Data for Groepsreis
