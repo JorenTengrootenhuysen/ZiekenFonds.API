@@ -21,13 +21,11 @@ namespace ZiekenFonds.API.Models
         [DataType(DataType.Date)]
         public DateTime Geboortedatum { get; set; }
 
-        [Required(ErrorMessage = "Allergieën is Verplicht!")]
         [StringLength(200, ErrorMessage = "Naam mag maximaal 200 karakters zijn!")]
-        public string Allergieën { get; set; }
+        public string? Allergieën { get; set; }
 
-        [Required(ErrorMessage = "Medicatie is Verplicht!")]
         [StringLength(200, ErrorMessage = "Naam mag maximaal 200 karakters zijn!")]
-        public string Medicatie { get; set; }
+        public string? Medicatie { get; set; }
 
         // Relaties
         public List<Deelnemer> Deelnemers { get; set; }
